@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOREA TRIP MAGAZINE PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Noto Sans JP',sans-serif;background:#0b0b0b;color:#fff}
+h1,h2{font-family:'Playfair Display',serif}
+
+.hero{height:100vh;position:relative}
+.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
+.hero-text{position:absolute;bottom:80px;left:60px}
+.hero-text h1{font-size:4.5rem;margin:0}
+.hero-text p{letter-spacing:4px;opacity:.8}
+
+.section{padding:90px 70px}
+.section.light{background:#f5f5f5;color:#111}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{position:relative;overflow:hidden;border-radius:12px}
+.card img{width:100%;height:320px;object-fit:cover;transition:.6s}
+.card:hover img{transform:scale(1.1)}
+.card-text{position:absolute;bottom:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,.85));width:100%}
+
+.timeline{border-left:2px solid #888;padding-left:25px}
+.timeline-item{margin-bottom:25px}
+.timeline-time{color:#aaa;font-size:.9rem}
+.timeline-title{font-weight:700}
+
+.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.info div{background:#1a1a1a;padding:22px;border-radius:12px}
+
+.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.food-grid img{width:100%;height:220px;object-fit:cover}
+
+.links a{display:inline-block;margin-right:10px;margin-top:8px;padding:6px 10px;background:#fff;color:#000;border-radius:6px;font-size:12px;text-decoration:none}
+
+.cta{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:#fff;
+ color:#000;
+ padding:12px 18px;
+ border-radius:30px;
+ font-weight:700;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+footer{text-align:center;padding:40px;background:#000}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<img src="https://images.unsplash.com/photo-1552568165-02cfdb51bc7d">
+<div class="hero-text">
+<h1>KOREA TRIP</h1>
+<p>SEOUL & BUSAN</p>
+<p>2026.04.30 → 05.05</p>
+</div>
+</div>
+
+<!-- RECOMMEND -->
+<div class="section">
+<h2>RECOMMENDED FOOD & CAFE</h2>
+<div class="info">
+
+<div>
+<h3>DAY1 明洞</h3>
+<p>bhcチキン / Cafe Onion</p>
+<div class="links">
+<a href="https://map.naver.com/v5/search/bhc%20明洞" target="_blank">NAVER</a>
+<a href="https://maps.google.com?q=bhc+myeongdong" target="_blank">Google</a>
+</div>
+</div>
+
+<div>
+<h3>DAY2 聖水・東大門</h3>
+<p>Cafe Knotted / タッカンマリ</p>
+<div class="links">
+<a href="https://map.naver.com/v5/search/cafe%20knotted%20seongsu" target="_blank">NAVER</a>
+<a href="https://maps.google.com?q=cafe+knotted+seongsu" target="_blank">Google</a>
+</div>
+</div>
+
+<div>
+<h3>DAY3 景福宮</h3>
+<p>土俗村参鶏湯</p>
+<div class="links">
+<a href="https://map.naver.com/v5/search/土俗村参鶏湯" target="_blank">NAVER</a>
+<a href="https://maps.google.com?q=tosokchon" target="_blank">Google</a>
+</div>
+</div>
+
+<div>
+<h3>DAY4 釜山</h3>
+<p>西面焼肉</p>
+<div class="links">
+<a href="https://map.naver.com/v5/search/西面%20焼肉" target="_blank">NAVER</a>
+<a href="https://maps.google.com?q=seomyeon+bbq" target="_blank">Google</a>
+</div>
+</div>
+
+<div>
+<h3>DAY5 釜山カフェ</h3>
+<p>Waveon Coffee</p>
+<div class="links">
+<a href="https://map.naver.com/v5/search/waveon%20coffee" target="_blank">NAVER</a>
+<a href="https://maps.google.com?q=waveon+coffee" target="_blank">Google</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- PACKING -->
+<div class="section">
+<h2>PACKING LIST</h2>
+<div class="info">
+<div>
+<p>パスポート / 航空券</p>
+<p>クレジットカード / 現金</p>
+<p>変換プラグ / 充電器</p>
+<p>モバイルバッテリー</p>
+</div>
+<div>
+<p>服（気温対応）</p>
+<p>洗面用品 / 常備薬</p>
+<p>美容施術後ケア用品</p>
+<p>エコバッグ</p>
+</div>
+</div>
+</div>
+
+<!-- SCHEDULE -->
+<div class="section">
+<h2>DETAILED SCHEDULE</h2>
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-time">DAY1</div>
+<div class="timeline-title">13:10 出発 → 15:00 到着 → 明洞</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-time">DAY2</div>
+<div class="timeline-title">眉アート → 聖水 → 東大門</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-time">DAY3</div>
+<div class="timeline-title">景福宮 → 明洞 → クリニック</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-time">DAY4</div>
+<div class="timeline-title">08:58 KTX → 11:16 釜山</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-time">DAY5</div>
+<div class="timeline-title">カフェ巡り</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-time">DAY6</div>
+<div class="timeline-title">15:50 → 17:20 帰国</div>
+</div>
+
+</div>
+</div>
+
+<div class="cta">MAPで開く</div>
+
+<footer>
+ENJOY YOUR TRIP
+</footer>
+
+</body>
+</html>
