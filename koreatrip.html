@@ -3,184 +3,867 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOREA TRIP MAGAZINE PRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
+<title>韓国旅行しおり 2026</title>
 <style>
-body{margin:0;font-family:'Noto Sans JP',sans-serif;background:#0b0b0b;color:#fff}
-h1,h2{font-family:'Playfair Display',serif}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif; background: #FFF8F2; color: #2C1810; line-height: 1.7; }
 
-.hero{height:100vh;position:relative}
-.hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
-.hero-text{position:absolute;bottom:80px;left:60px}
-.hero-text h1{font-size:4.5rem;margin:0}
-.hero-text p{letter-spacing:4px;opacity:.8}
-
-.section{padding:90px 70px}
-.section.light{background:#f5f5f5;color:#111}
-
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{position:relative;overflow:hidden;border-radius:12px}
-.card img{width:100%;height:320px;object-fit:cover;transition:.6s}
-.card:hover img{transform:scale(1.1)}
-.card-text{position:absolute;bottom:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,.85));width:100%}
-
-.timeline{border-left:2px solid #888;padding-left:25px}
-.timeline-item{margin-bottom:25px}
-.timeline-time{color:#aaa;font-size:.9rem}
-.timeline-title{font-weight:700}
-
-.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.info div{background:#1a1a1a;padding:22px;border-radius:12px}
-
-.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.food-grid img{width:100%;height:220px;object-fit:cover}
-
-.links a{display:inline-block;margin-right:10px;margin-top:8px;padding:6px 10px;background:#fff;color:#000;border-radius:6px;font-size:12px;text-decoration:none}
-
-.cta{
- position:fixed;
- bottom:20px;
- right:20px;
- background:#fff;
- color:#000;
- padding:12px 18px;
- border-radius:30px;
- font-weight:700;
- box-shadow:0 10px 30px rgba(0,0,0,.4);
+/* ─── COVER ─────────────────────────────────── */
+.cover {
+  position: relative;
+  background: linear-gradient(150deg, #B84820 0%, #D4622C 50%, #E8784A 100%);
+  min-height: 480px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
 }
+.cover-deco { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.cover-blob-wrap {
+  position: absolute; left: -20px; top: 20px;
+  width: 54%; max-width: 540px; height: calc(100% - 20px);
+  z-index: 2;
+}
+.cover-blob-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  clip-path: polygon(22% 0%, 78% 2%, 98% 12%, 100% 48%, 94% 82%, 72% 100%, 30% 98%, 6% 80%, 0% 42%, 8% 14%);
+}
+.cover-text {
+  position: relative; z-index: 3;
+  margin-left: 52%;
+  padding: 44px 28px 20px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cover-eyebrow { font-size: 0.78em; letter-spacing: 0.35em; color: #FFD9B0; }
+.cover-title { font-size: 2.6em; font-weight: 900; color: #fff; line-height: 1.15; text-shadow: 0 3px 18px rgba(0,0,0,.45); letter-spacing: 0.06em; }
+.cover-gold-line { width: 64px; height: 2px; background: linear-gradient(90deg,#C9A227,#F0D060,#C9A227); margin: 4px 0; }
+.cover-subtitle { font-size: 1.1em; color: #FFE8C0; font-weight: 700; letter-spacing: 0.05em; }
+.cover-dates  { font-size: 0.82em; color: #FFD9B0; }
+.cover-member { font-size: 0.78em; color: #FFC8A0; }
+.cover-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; padding-bottom: 20px; }
+.cover-badge  { background: rgba(255,255,255,.14); border: 1px solid rgba(255,210,150,.55); border-radius: 20px; padding: 4px 11px; font-size: 0.74em; color: #FFE8C0; }
+.cover-bottom { position: relative; z-index: 3; margin-top: auto; }
+.skyline-svg  { display: block; width: 100%; }
 
-footer{text-align:center;padding:40px;background:#000}
+/* ─── PHOTO COLLAGE (like ref image 2) ──────── */
+.photo-collage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 190px 190px;
+  gap: 3px;
+}
+.photo-collage img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.photo-collage img:hover { transform: scale(1.04); }
+.photo-collage-cell { overflow: hidden; }
+/* Diamond frame overlay */
+.collage-diamond {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,.92);
+  border: 2px solid #C9A227;
+  outline: 6px solid rgba(201,162,39,.18);
+  box-shadow: 0 0 40px rgba(0,0,0,.25);
+  z-index: 10;
+}
+.collage-diamond-inner {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transform: rotate(-45deg);
+  gap: 4px;
+}
+.collage-diamond-inner .cd-main { font-size: 2.2em; font-weight: 900; color: #1A1A3E; letter-spacing: 0.06em; }
+.collage-diamond-inner .cd-sub  { font-size: 0.8em; color: #8B2500; letter-spacing: 0.08em; }
+.collage-diamond-inner .cd-gold { width: 60px; height: 1.5px; background: #C9A227; }
+
+/* ─── ICON STRIP ────────────────────────────── */
+.icon-strip { background: #FFF3E8; border-bottom: 2px solid #DDA070; padding: 10px 0 8px; }
+.icon-strip-inner { display: flex; justify-content: space-around; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 10px; }
+.icon-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.icon-item .ii { font-size: 1.5em; line-height: 1; }
+.icon-item .il { font-size: 0.57em; color: #B84820; font-weight: 700; letter-spacing: 0.03em; }
+
+/* ─── SPOT PHOTO STRIP ──────────────────────── */
+.spot-strip {
+  display: flex; gap: 6px; padding: 10px 13px 12px;
+  overflow-x: auto; background: #FFF8F2;
+  scrollbar-width: thin; scrollbar-color: #E8C49A transparent;
+}
+.spot-strip::-webkit-scrollbar { height: 4px; }
+.spot-strip::-webkit-scrollbar-thumb { background: #E8C49A; border-radius: 2px; }
+.spot-item { flex-shrink: 0; width: 110px; border-radius: 8px; overflow: hidden; position: relative; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.spot-item img { width: 100%; height: 75px; object-fit: cover; display: block; }
+.spot-label { background: rgba(0,0,0,.52); color: #fff; font-size: 0.6em; padding: 3px 5px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ─── FOOD PHOTO GRID ───────────────────────── */
+.food-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 3px;
+  margin: 0;
+}
+.food-cell { position: relative; overflow: hidden; height: 110px; }
+.food-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.food-cell-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+  color: white; font-size: 0.68em; font-weight: 600;
+  padding: 14px 6px 5px; text-align: center;
+}
+@media(max-width:580px){ .food-grid { grid-template-columns: repeat(2,1fr); } }
+
+/* ─── CITY DIVIDER ──────────────────────────── */
+.city-divider { position: relative; height: 140px; overflow: hidden; }
+.city-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; filter: brightness(.65) saturate(.9); }
+.city-divider-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,rgba(160,50,10,.75) 0%,rgba(160,50,10,.3) 60%,transparent 100%);
+  display: flex; align-items: center; padding: 0 28px;
+}
+.city-divider-text h2 { font-size: 1.7em; font-weight: 900; color: white; text-shadow: 0 2px 8px rgba(0,0,0,.5); letter-spacing: 0.08em; }
+.city-divider-text p  { font-size: 0.82em; color: #FFD9B0; }
+
+/* ─── SECTION ───────────────────────────────── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 14px 60px; }
+.section { margin-bottom: 28px; margin-top: 20px; }
+.section-title { background: linear-gradient(90deg,#B84820,#D4622C); color: white; padding: 11px 18px; border-radius: 8px 8px 0 0; font-size: 1.06em; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 3px solid #B8860B; }
+.section-body  { background: white; border: 1px solid #E8C49A; border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+th { background: linear-gradient(90deg,#B84820,#D4622C); color: white; padding: 9px 13px; font-size: 0.85em; text-align: left; }
+td { padding: 9px 13px; font-size: 0.85em; border-bottom: 1px solid #F5E0C8; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #FFF8F2; }
+.label { background: #FFF0E4; font-weight: 600; color: #8B2500; width: 28%; }
+
+/* Info grid */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; padding: 13px; }
+@media(max-width:580px){ .info-grid { grid-template-columns: 1fr; } }
+.info-card { border: 1px solid #E8C49A; border-radius: 7px; overflow: hidden; }
+.info-card-title { background: linear-gradient(90deg,#B84820,#D4622C); color: white; padding: 8px 13px; font-size: 0.86em; font-weight: 700; }
+
+/* ─── DAY CARDS ──────────────────────────────── */
+.day-card { margin-bottom: 14px; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 12px rgba(140,50,0,.13); border: 1px solid #E8C49A; }
+.day-photo-header { position: relative; height: 120px; overflow: hidden; }
+.day-photo-header img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; filter: brightness(.6) saturate(.85); }
+.day-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,rgba(150,45,5,.8) 0%,rgba(150,45,5,.25) 65%,transparent 100%);
+  display: flex; align-items: center; gap: 11px; padding: 0 18px;
+}
+.day-photo-overlay .day-num  { font-size: 1.4em; font-weight: 900; color: white; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+.day-photo-overlay .day-date { font-size: 0.88em; font-weight: 700; color: #FFE8C0; }
+.day-photo-overlay .day-loc  { font-size: 0.76em; color: #FFD9B0; }
+.day-photo-overlay .day-icon { margin-left: auto; font-size: 1.5em; opacity: .8; }
+.day-body { background: white; }
+.day-row { display: flex; border-bottom: 1px solid #F5E0C8; }
+.day-row:last-child { border-bottom: none; }
+.day-time { width: 88px; min-width: 88px; padding: 8px 11px; font-size: 0.77em; color: #A04020; font-weight: 700; border-right: 2px solid #F5E0C8; }
+.day-event { padding: 8px 13px; font-size: 0.85em; flex: 1; }
+.day-event.highlight { background: #FFF3E8; font-weight: 600; }
+.day-event.warning   { background: #FEF0E4; }
+.day-event.alert     { background: #FFF9E8; }
+
+/* ─── TIPS ───────────────────────────────────── */
+.tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; padding: 13px; }
+@media(max-width:580px){ .tips-grid { grid-template-columns: 1fr; } }
+.tip-box { border-radius: 7px; padding: 12px 14px; }
+.tip-box.orange { background: #FFF3E8; border-left: 4px solid #B84820; }
+.tip-box.green  { background: #F0FDF4; border-left: 4px solid #16A34A; }
+.tip-box.red    { background: #FEF2F2; border-left: 4px solid #DC2626; }
+.tip-box.gold   { background: #FFFBEB; border-left: 4px solid #B8860B; }
+.tip-box h4 { font-size: 0.86em; font-weight: 700; margin-bottom: 6px; }
+.tip-box ul { padding-left: 14px; font-size: 0.82em; }
+.tip-box li { margin-bottom: 3px; }
+
+/* ─── APP LIST ───────────────────────────────── */
+.app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 13px; }
+@media(max-width:560px){ .app-grid { grid-template-columns: 1fr; } }
+.app-item { display: flex; align-items: flex-start; gap: 10px; background: white; border: 1px solid #E8C49A; border-radius: 9px; padding: 11px 12px; }
+.app-icon { font-size: 1.85em; flex-shrink: 0; line-height: 1; }
+.app-name { font-weight: 700; font-size: 0.88em; color: #8B2500; }
+.app-tag  { font-size: 0.69em; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; }
+.app-tag.must { background: #FFF0E4; color: #B84820; }
+.app-tag.rec  { background: #DCFCE7; color: #15803D; }
+.app-desc { font-size: 0.79em; color: #666; margin-top: 2px; }
+
+/* ─── SHOP CARDS ─────────────────────────────── */
+.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 13px; }
+@media(max-width:640px){ .shop-grid { grid-template-columns: 1fr; } }
+.shop-card { border: 1.5px solid #E8C49A; border-radius: 9px; overflow: hidden; box-shadow: 0 2px 7px rgba(140,50,0,.09); }
+.shop-photo-head { position: relative; height: 80px; overflow: hidden; }
+.shop-photo-head img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.58) saturate(.8); }
+.shop-photo-head-overlay { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 12px; font-weight: 700; font-size: 0.86em; color: white; line-height: 1.3; }
+.shop-card-body { padding: 10px 12px; font-size: 0.81em; background: white; }
+.shop-card-body li { margin-bottom: 4px; list-style: none; }
+.shop-card-body li::before { content: '📍 '; }
+.shop-note { font-size: 0.77em; color: #B84820; font-weight: 600; background: #FFF0E4; border-radius: 4px; padding: 1px 6px; display: inline-block; margin-top: 3px; }
+
+/* ─── CHECKLIST ──────────────────────────────── */
+.check-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 11px; padding: 13px; }
+@media(max-width:560px){ .check-cols { grid-template-columns: 1fr; } }
+.check-group h4 { font-size: 0.85em; font-weight: 700; color: #B84820; margin-bottom: 5px; border-bottom: 1px solid #E8C49A; padding-bottom: 3px; }
+.check-item { display: flex; align-items: flex-start; gap: 7px; font-size: 0.82em; margin-bottom: 4px; }
+.check-item input { margin-top: 3px; accent-color: #B84820; flex-shrink: 0; }
+
+/* ─── ALERT ──────────────────────────────────── */
+.alert-box { margin: 12px; padding: 11px 13px; border-radius: 7px; font-size: 0.85em; }
+.alert-box.yellow { background: #FFFBEB; border: 1px solid #E8C870; }
+.alert-box.red    { background: #FEF2F2; border: 1px solid #FCA5A5; }
+.alert-box h4 { font-weight: 700; margin-bottom: 5px; }
+.alert-box ul { padding-left: 13px; }
+.alert-box li { margin-bottom: 3px; }
+
+footer { text-align: center; padding: 26px; color: #A07060; font-size: 0.79em; border-top: 1px solid #E8C49A; }
+
+@media print {
+  .cover, .photo-collage, .city-divider, .day-photo-header, .shop-photo-head, th
+  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<div class="hero">
-<img src="https://images.unsplash.com/photo-1552568165-02cfdb51bc7d">
-<div class="hero-text">
-<h1>KOREA TRIP</h1>
-<p>SEOUL & BUSAN</p>
-<p>2026.04.30 → 05.05</p>
-</div>
+<!-- ══════════════ COVER ══════════════════════ -->
+<div class="cover">
+  <svg class="cover-deco" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice">
+    <circle cx="900" cy="120" r="260" fill="white" opacity="0.03"/>
+    <!-- cherry branches left -->
+    <g stroke="#903010" stroke-linecap="round" fill="none">
+      <path d="M-10 90 Q85 35 185 82 Q235 108 285 68" stroke-width="9"/>
+      <path d="M185 82 Q168 28 142 2" stroke-width="6"/>
+      <path d="M235 70 Q247 24 232 -4" stroke-width="5"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="142" cy="2"  r="20" fill="#FFD8E8"/><circle cx="127" cy="16" r="17" fill="#FFB0C8"/>
+      <circle cx="157" cy="14" r="16" fill="#FFD8E8"/><circle cx="143" cy="28" r="14" fill="#FFB0C8"/>
+      <circle cx="232" cy="-4" r="18" fill="#FFD8E8"/><circle cx="218" cy="10" r="15" fill="#FFB0C8"/>
+      <circle cx="246" cy="8"  r="14" fill="#FFD8E8"/>
+    </g>
+    <!-- cherry branches right -->
+    <g stroke="#903010" stroke-linecap="round" fill="none">
+      <path d="M1210 68 Q1118 18 1050 65 Q998 92 948 52" stroke-width="8"/>
+      <path d="M1050 65 Q1064 15 1046 -10" stroke-width="6"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="1046" cy="-10" r="19" fill="#FFD8E8"/><circle cx="1032" cy="4" r="16" fill="#FFB0C8"/>
+      <circle cx="1060" cy="2"   r="15" fill="#FFD8E8"/>
+    </g>
+    <!-- decorative flower outlines -->
+    <g stroke="rgba(255,195,130,.22)" stroke-width="1.8" fill="none">
+      <g transform="translate(820,55)">
+        <circle cx="0" cy="0" r="30"/>
+        <circle cx="0" cy="-30" r="11"/><circle cx="30" cy="0" r="11"/><circle cx="0" cy="30" r="11"/><circle cx="-30" cy="0" r="11"/>
+        <circle cx="21" cy="-21" r="9"/><circle cx="21" cy="21" r="9"/><circle cx="-21" cy="21" r="9"/><circle cx="-21" cy="-21" r="9"/>
+      </g>
+      <g transform="translate(68,200)"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="-22" r="8"/><circle cx="22" cy="0" r="8"/><circle cx="0" cy="22" r="8"/><circle cx="-22" cy="0" r="8"/></g>
+      <g transform="translate(1145,210)"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="-22" r="8"/><circle cx="22" cy="0" r="8"/><circle cx="0" cy="22" r="8"/><circle cx="-22" cy="0" r="8"/></g>
+    </g>
+    <!-- petals -->
+    <g opacity="0.55">
+      <ellipse cx="392" cy="65"  rx="11" ry="6.5" fill="#FFD8E8" transform="rotate(-22,392,65)"/>
+      <ellipse cx="470" cy="162" rx="10" ry="5.5" fill="#FFB0C8" transform="rotate(38,470,162)"/>
+      <ellipse cx="640" cy="148" rx="11" ry="6"   fill="#FFD8E8" transform="rotate(-10,640,148)"/>
+      <ellipse cx="950" cy="140" rx="10" ry="5.5" fill="#FFD8E8" transform="rotate(25,950,140)"/>
+    </g>
+    <line x1="618" y1="178" x2="1165" y2="178" stroke="#C9A227" stroke-width="0.9" opacity="0.42"/>
+    <line x1="618" y1="315" x2="1165" y2="315" stroke="#C9A227" stroke-width="0.9" opacity="0.42"/>
+  </svg>
+
+  <!-- Blob photo -->
+  <div class="cover-blob-wrap">
+    <img src="https://images.unsplash.com/photo-1630135199928-55a43e87350d?w=800&auto=format&fit=crop&q=80" alt="景福宮"
+         onerror="this.style.opacity='0'">
+  </div>
+
+  <!-- Title text -->
+  <div class="cover-text">
+    <div class="cover-eyebrow">✦ 魅 力 満 載 ✦</div>
+    <div class="cover-title">韓国旅行<br>しおり</div>
+    <div class="cover-gold-line"></div>
+    <div class="cover-subtitle">ソウル・釜山　5泊6日</div>
+    <div class="cover-dates">2026年4月30日（木）〜 5月5日（火）</div>
+    <div class="cover-badges">
+      <span class="cover-badge">✈ KIX → ICN / PUS → KIX</span>
+      <span class="cover-badge">🚅 KTX ソウル→釜山</span>
+      <span class="cover-badge">💆 アートメイク</span>
+      <span class="cover-badge">✨ ほくろ取り</span>
+    </div>
+  </div>
+
+  <!-- Skyline SVG -->
+  <div class="cover-bottom">
+    <svg class="skyline-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 160" preserveAspectRatio="none">
+      <rect x="0" y="140" width="1200" height="20" fill="#8A2808" opacity="0.6"/>
+      <!-- Gwanghwamun -->
+      <g transform="translate(40,22)" fill="#8A2808" opacity="0.75">
+        <rect x="0" y="113" width="288" height="28" rx="2"/>
+        <rect x="8" y="96" width="272" height="20" rx="2"/>
+        <path d="M66 96 Q144 54 222 96 Z"/>
+        <ellipse cx="144" cy="74" rx="32" ry="26" fill="#1A0808" opacity="0.9"/>
+        <rect x="18" y="38" width="18" height="60" rx="2"/>
+        <rect x="252" y="38" width="18" height="60" rx="2"/>
+        <rect x="66" y="42" width="14" height="56" rx="2"/>
+        <rect x="208" y="42" width="14" height="56" rx="2"/>
+        <path d="M38 38 Q144 0 250 38" fill="#6A1808"/>
+        <path d="M18 46 Q144 6 270 46 Q258 55 242 50 L144 16 L58 50 Q42 55 18 46 Z" fill="#7A2008"/>
+        <path d="M2 88 Q144 48 286 88 Q274 98 255 93 L144 58 L35 93 Q16 98 2 88 Z" fill="#7A2008"/>
+      </g>
+      <!-- Namsan Tower -->
+      <g transform="translate(470,0)" fill="#8A2808" opacity="0.78">
+        <ellipse cx="62" cy="158" rx="55" ry="12"/>
+        <rect x="36" y="136" width="52" height="22" rx="3"/>
+        <rect x="42" y="118" width="40" height="20" rx="2"/>
+        <rect x="49" y="62"  width="26" height="60"/>
+        <rect x="34" y="48"  width="56" height="18" rx="3"/>
+        <rect x="40" y="32"  width="44" height="18" rx="3"/>
+        <rect x="49" y="10"  width="26" height="26"/>
+        <polygon points="62,0 54,12 70,12"/>
+        <circle cx="62" cy="5"  r="4" fill="#FFD060" opacity="0.8"/>
+        <circle cx="62" cy="60" r="3" fill="#FFD060" opacity="0.7"/>
+      </g>
+      <!-- Buildings Seoul -->
+      <g transform="translate(610,55)" fill="#8A2808" opacity="0.65">
+        <rect x="0"  y="35" width="28" height="68" rx="2"/>
+        <rect x="32" y="20" width="22" height="83" rx="2"/>
+        <rect x="58" y="42" width="26" height="61" rx="2"/>
+        <rect x="88" y="28" width="20" height="75" rx="2"/>
+      </g>
+      <!-- Lotte Tower -->
+      <g transform="translate(742,12)" fill="#8A2808" opacity="0.72">
+        <ellipse cx="32" cy="146" rx="34" ry="10"/>
+        <rect x="18" y="128" width="28" height="20" rx="2"/>
+        <path d="M10 128 L26 8 L38 8 L54 128 Z"/>
+        <polygon points="32,2 24,10 40,10"/>
+        <circle cx="32" cy="4" r="3" fill="#FFD060" opacity="0.7"/>
+      </g>
+      <!-- Busan buildings -->
+      <g transform="translate(845,42)" fill="#8A2808" opacity="0.62">
+        <rect x="0"   y="50" width="28" height="70" rx="1"/>
+        <rect x="32"  y="30" width="28" height="90" rx="1"/>
+        <rect x="64"  y="44" width="28" height="76" rx="1"/>
+        <rect x="96"  y="22" width="28" height="98" rx="1"/>
+        <rect x="128" y="54" width="22" height="66" rx="1"/>
+      </g>
+      <!-- Gwangandaegyo Bridge -->
+      <g transform="translate(1010,74)" fill="none" stroke="#8A2808" stroke-width="2.5" opacity="0.65">
+        <line x1="0"   y1="58" x2="185" y2="58"/>
+        <line x1="28"  y1="58" x2="28"  y2="10"/>
+        <line x1="157" y1="58" x2="157" y2="10"/>
+        <line x1="28"  y1="10" x2="93"  y2="40"/>
+        <line x1="28"  y1="10" x2="93"  y2="54"/>
+        <line x1="157" y1="10" x2="93"  y2="40"/>
+        <line x1="157" y1="10" x2="93"  y2="54"/>
+      </g>
+      <g transform="translate(1010,74)" fill="#8A2808" opacity="0.65">
+        <rect x="0"   y="53" width="185" height="10" rx="2"/>
+        <rect x="23"  y="5"  width="10"  height="10" rx="1"/>
+        <rect x="152" y="5"  width="10"  height="10" rx="1"/>
+      </g>
+    </svg>
+  </div>
 </div>
 
-<!-- RECOMMEND -->
-<div class="section">
-<h2>RECOMMENDED FOOD & CAFE</h2>
-<div class="info">
-
-<div>
-<h3>DAY1 明洞</h3>
-<p>bhcチキン / Cafe Onion</p>
-<div class="links">
-<a href="https://map.naver.com/v5/search/bhc%20明洞" target="_blank">NAVER</a>
-<a href="https://maps.google.com?q=bhc+myeongdong" target="_blank">Google</a>
-</div>
-</div>
-
-<div>
-<h3>DAY2 聖水・東大門</h3>
-<p>Cafe Knotted / タッカンマリ</p>
-<div class="links">
-<a href="https://map.naver.com/v5/search/cafe%20knotted%20seongsu" target="_blank">NAVER</a>
-<a href="https://maps.google.com?q=cafe+knotted+seongsu" target="_blank">Google</a>
-</div>
-</div>
-
-<div>
-<h3>DAY3 景福宮</h3>
-<p>土俗村参鶏湯</p>
-<div class="links">
-<a href="https://map.naver.com/v5/search/土俗村参鶏湯" target="_blank">NAVER</a>
-<a href="https://maps.google.com?q=tosokchon" target="_blank">Google</a>
-</div>
+<!-- ══ PHOTO COLLAGE（参考画像2スタイル）══════ -->
+<div class="photo-collage">
+  <div class="photo-collage-cell">
+    <img src="https://images.unsplash.com/photo-1483628529892-5436eb24f89a?w=700&h=400&auto=format&fit=crop&q=80" alt="景福宮">
+  </div>
+  <div class="photo-collage-cell">
+    <img src="https://images.unsplash.com/photo-1552568165-02cfdb51bc7d?w=700&h=400&auto=format&fit=crop&q=80" alt="南山タワー夜景">
+  </div>
+  <div class="photo-collage-cell">
+    <img src="https://images.unsplash.com/photo-1670735411734-c9725326de3f?w=700&h=400&auto=format&fit=crop&q=80" alt="北村韓屋村">
+  </div>
+  <div class="photo-collage-cell">
+    <img src="https://images.unsplash.com/photo-1702040093537-b8c34eaa0f5c?w=700&h=400&auto=format&fit=crop&q=80" alt="広安里ビーチ">
+  </div>
+  <!-- Diamond frame -->
+  <div class="collage-diamond">
+    <div class="collage-diamond-inner">
+      <div class="cd-gold"></div>
+      <div class="cd-main">韓国</div>
+      <div class="cd-sub">魅力満載の旅</div>
+      <div class="cd-gold"></div>
+    </div>
+  </div>
 </div>
 
-<div>
-<h3>DAY4 釜山</h3>
-<p>西面焼肉</p>
-<div class="links">
-<a href="https://map.naver.com/v5/search/西面%20焼肉" target="_blank">NAVER</a>
-<a href="https://maps.google.com?q=seomyeon+bbq" target="_blank">Google</a>
-</div>
-</div>
-
-<div>
-<h3>DAY5 釜山カフェ</h3>
-<p>Waveon Coffee</p>
-<div class="links">
-<a href="https://map.naver.com/v5/search/waveon%20coffee" target="_blank">NAVER</a>
-<a href="https://maps.google.com?q=waveon+coffee" target="_blank">Google</a>
-</div>
-</div>
-
-</div>
+<!-- ══ ICON STRIP ════════════════════════════ -->
+<div class="icon-strip">
+  <div class="icon-strip-inner">
+    <div class="icon-item"><div class="ii">🌸</div><div class="il">벚꽃</div></div>
+    <div class="icon-item"><div class="ii">✈️</div><div class="il">비행기</div></div>
+    <div class="icon-item"><div class="ii">🏯</div><div class="il">경복궁</div></div>
+    <div class="icon-item"><div class="ii">🌶️</div><div class="il">떡볶이</div></div>
+    <div class="icon-item"><div class="ii">🧋</div><div class="il">버블티</div></div>
+    <div class="icon-item"><div class="ii">🛍️</div><div class="il">쇼핑</div></div>
+    <div class="icon-item"><div class="ii">💆</div><div class="il">뷰티</div></div>
+    <div class="icon-item"><div class="ii">🚄</div><div class="il">KTX</div></div>
+    <div class="icon-item"><div class="ii">🌊</div><div class="il">부산바다</div></div>
+    <div class="icon-item"><div class="ii">🦞</div><div class="il">해산물</div></div>
+    <div class="icon-item"><div class="ii">🍗</div><div class="il">치킨</div></div>
+    <div class="icon-item"><div class="ii">🇰🇷</div><div class="il">한국</div></div>
+  </div>
 </div>
 
-<!-- PACKING -->
-<div class="section">
-<h2>PACKING LIST</h2>
-<div class="info">
-<div>
-<p>パスポート / 航空券</p>
-<p>クレジットカード / 現金</p>
-<p>変換プラグ / 充電器</p>
-<p>モバイルバッテリー</p>
-</div>
-<div>
-<p>服（気温対応）</p>
-<p>洗面用品 / 常備薬</p>
-<p>美容施術後ケア用品</p>
-<p>エコバッグ</p>
-</div>
-</div>
-</div>
-
-<!-- SCHEDULE -->
-<div class="section">
-<h2>DETAILED SCHEDULE</h2>
-<div class="timeline">
-
-<div class="timeline-item">
-<div class="timeline-time">DAY1</div>
-<div class="timeline-title">13:10 出発 → 15:00 到着 → 明洞</div>
+<!-- ══ KOREAN FOOD PHOTO GRID ════════════════ -->
+<div class="food-grid">
+  <div class="food-cell">
+    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&h=220&auto=format&fit=crop&q=80" alt="떡볶이">
+    <div class="food-cell-label">떡볶이　トッポギ</div>
+  </div>
+  <div class="food-cell">
+    <img src="https://images.unsplash.com/photo-1677029979796-906d97385651?w=400&h=220&auto=format&fit=crop&q=80" alt="삼겹살">
+    <div class="food-cell-label">삼겹살　サムギョプサル</div>
+  </div>
+  <div class="food-cell">
+    <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400&h=220&auto=format&fit=crop&q=80" alt="비빔밥">
+    <div class="food-cell-label">비빔밥　ビビンバ</div>
+  </div>
+  <div class="food-cell">
+    <img src="https://images.unsplash.com/photo-1661366394743-fe30fe478ef7?w=400&h=220&auto=format&fit=crop&q=80" alt="해물파전">
+    <div class="food-cell-label">해물파전　チヂミ</div>
+  </div>
 </div>
 
-<div class="timeline-item">
-<div class="timeline-time">DAY2</div>
-<div class="timeline-title">眉アート → 聖水 → 東大門</div>
+<div class="container">
+
+  <!-- 旅程表 -->
+  <div class="section">
+    <div class="section-title">📅 旅程表</div>
+    <div class="section-body">
+      <table>
+        <tr><th>日付</th><th>日</th><th>メイン</th><th>宿泊</th></tr>
+        <tr><td><strong>4/30（木）</strong></td><td>1日目</td><td>KIX 13:10 → ICN 15:00　明洞散策</td><td>サミットホテル（ソウル）</td></tr>
+        <tr><td><strong>5/1（金）</strong></td><td>2日目</td><td>💆 BROWDOLL → 新沙 → 聖水洞（MUSINSA・SATUR）→ 東大門夜（DOOTA・Migliore）</td><td>サミットホテル（ソウル）</td></tr>
+        <tr><td><strong>5/2（土）</strong></td><td>3日目</td><td>景福宮・北村・仁寺洞　✨ ビンセントクリニック → 明洞（North Face・ジルボー）</td><td>サミットホテル（ソウル）</td></tr>
+        <tr><td><strong>5/3（日）</strong></td><td>4日目</td><td>🚅 KTX 8:58発 → 11:16着　釜山</td><td>釜山ビジネスホテル（釜山）</td></tr>
+        <tr><td><strong>5/4（月）</strong></td><td>5日目</td><td>甘川文化村・チャガルチ・BIFF・広安里</td><td>釜山ビジネスホテル（釜山）</td></tr>
+        <tr><td><strong>5/5（火）</strong></td><td>6日目</td><td>釜山観光 → 金海空港 → PUS 15:50 → KIX 17:20</td><td>—（帰国）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- フライト・ホテル -->
+  <div class="section">
+    <div class="section-title">✈ フライト・ホテル</div>
+    <div class="section-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-title">✈ 行き　LJ234 ジンエアー</div>
+          <table>
+            <tr><td class="label">区間</td><td>KIX 13:10 → ICN 15:00</td></tr>
+            <tr><td class="label">日程</td><td>2026年4月30日（木）</td></tr>
+            <tr><td class="label">搭乗者</td><td></td></tr>
+            <tr><td class="label">オプション</td><td>受託手荷物付き</td></tr>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">✈ 帰り　LJ257 ジンエアー</div>
+          <table>
+            <tr><td class="label">区間</td><td>PUS 15:50 → KIX 17:20</td></tr>
+            <tr><td class="label">日程</td><td>2026年5月5日（火）</td></tr>
+            <tr><td class="label">搭乗者</td><td></td></tr>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">🏨 サミットホテル（ソウル）</div>
+          <table>
+            <tr><td class="label">住所</td><td>198 Jangchungdan-ro, 中区</td></tr>
+            <tr><td class="label">期間</td><td>4/30（木）〜 5/3（日）　3泊</td></tr>
+            <tr><td class="label">部屋</td><td>デラックス ツインルーム</td></tr>
+            <tr><td class="label">最寄り</td><td>東大門歴史文化公園駅 徒歩5分</td></tr>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">🏨 釜山ビジネスホテル（釜山）</div>
+          <table>
+            <tr><td class="label">期間</td><td>5/3（日）〜 5/5（火）　2泊</td></tr>
+            <tr><td class="label">部屋</td><td>スタンダード ツインルーム</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 施術予約 -->
+  <div class="section">
+    <div class="section-title">💆 施術予約</div>
+    <div class="section-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-title">💆 BROWDOLL（ブロウドール）</div>
+          <table>
+            <tr><td class="label">施術</td><td>眉毛アートメイク</td></tr>
+            <tr><td class="label">日時</td><td><strong>5月1日（金）10:00〜</strong></td></tr>
+            <tr><td class="label">場所</td><td>江南・論峴エリア</td></tr>
+            <tr><td class="label">所要</td><td>約2〜3時間</td></tr>
+            <tr><td class="label">前日注意</td><td>飲酒NG・眉メイクせず就寝</td></tr>
+            <tr><td class="label">当日注意</td><td>眉メイクなしで来院</td></tr>
+          </table>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">✨ ビンセントクリニック（明洞）</div>
+          <table>
+            <tr><td class="label">施術</td><td>シミ・ほくろ取り放題コース（CO2レーザー）</td></tr>
+            <tr><td class="label">日時</td><td><strong>5月2日（土）15:00〜16:00 ✅予約確定</strong></td></tr>
+            <tr><td class="label">場所</td><td>明洞駅4番出口すぐ　10階</td></tr>
+            <tr><td class="label">料金</td><td>250,000ウォン（60分　1箇所）</td></tr>
+            <tr><td class="label">日本語</td><td>日本人スタッフ在籍 ◎</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="alert-box red">
+        <h4>⚠️ 施術後のケア（釜山でも継続）</h4>
+        <ul>
+          <li>かさぶたを絶対に剥がさない</li>
+          <li>患部を濡らさない（数日間）</li>
+          <li>帽子・日焼け止め必携（特に釜山の屋外）</li>
+          <li>アートメイクも施術後2〜3日は汗・水気を避ける</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="timeline-item">
-<div class="timeline-time">DAY3</div>
-<div class="timeline-title">景福宮 → 明洞 → クリニック</div>
+<!-- ══ SEOUL DIVIDER ══════════════════════════ -->
+<div class="city-divider">
+  <img src="https://images.unsplash.com/photo-1515093619859-d98321073408?w=1400&h=280&auto=format&fit=crop&q=80" alt="Seoul"
+       onerror="this.style.background='linear-gradient(135deg,#B84820,#8A2808)';this.style.display='block'">
+  <div class="city-divider-overlay">
+    <div class="city-divider-text">
+      <h2>🏙 ソウル 3泊</h2>
+      <p>4月30日（木）〜 5月3日（日）</p>
+    </div>
+  </div>
 </div>
 
-<div class="timeline-item">
-<div class="timeline-time">DAY4</div>
-<div class="timeline-title">08:58 KTX → 11:16 釜山</div>
+<div class="container">
+  <div class="section" style="margin-top:16px;">
+    <div class="section-title">🗓 日程詳細（ソウル）</div>
+    <div class="section-body" style="padding:14px;">
+
+      <!-- Day 1 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1530109547549-0ba871caedb6?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day1">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 1</span>
+            <span class="day-date">4月30日（木）</span>
+            <span class="day-loc">✈ ソウル着　明洞</span>
+            <span class="day-icon">✈🌸</span>
+          </div>
+        </div>
+        <!-- spot photos -->
+        <div class="spot-strip">
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1624558118561-325bc4933964?w=220&h=150&auto=format&fit=crop&q=80" alt="ICN"><div class="spot-label">仁川空港</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1585893656971-d3d932cada08?w=220&h=150&auto=format&fit=crop&q=80" alt="AREX"><div class="spot-label">AREX</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1586274677440-231405a4c74c?w=220&h=150&auto=format&fit=crop&q=80" alt="明洞"><div class="spot-label">明洞の夜</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1548150914-c9f19106dbf6?w=220&h=150&auto=format&fit=crop&q=80" alt="屋台"><div class="spot-label">屋台グルメ</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1532085755448-a67fd3b518b2?w=220&h=150&auto=format&fit=crop&q=80" alt="NF"><div class="spot-label">North Face</div></div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">13:10</div><div class="day-event highlight">KIX 出発　LJ234 ジンエアー</div></div>
+          <div class="day-row"><div class="day-time">15:00</div><div class="day-event highlight">ICN 到着</div></div>
+          <div class="day-row"><div class="day-time">15:30〜</div><div class="day-event">AREX（空港速達）でソウルへ　約43分　→　ホテルへ</div></div>
+          <div class="day-row"><div class="day-time">17:30ごろ</div><div class="day-event">サミットホテル チェックイン</div></div>
+          <div class="day-row"><div class="day-time">夜</div><div class="day-event">明洞　食べ歩き・プチショッピング（タコ小屋・トッポギなど）<br><small style="color:#B84820">🛍 THE NORTH FACE Myeongdong・ジルボー明洞店 チェック！</small></div></div>
+          <div class="day-row"><div class="day-time"></div><div class="day-event warning">⚠️ 翌日BROWDOLL施術のため飲酒NG・早めに就寝</div></div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1671160394835-d871e3d19eb2?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day2">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 2</span>
+            <span class="day-date">5月1日（金）</span>
+            <span class="day-loc">💆 アートメイク　新沙　聖水洞　東大門</span>
+            <span class="day-icon">💄🛍</span>
+          </div>
+        </div>
+        <div class="spot-strip">
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=220&h=150&auto=format&fit=crop&q=80" alt="BROWDOLL"><div class="spot-label">BROWDOLL</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1630135199928-55a43e87350d?w=220&h=150&auto=format&fit=crop&q=80" alt="新沙"><div class="spot-label">新沙ガロスキル</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?w=220&h=150&auto=format&fit=crop&q=80" alt="聖水洞"><div class="spot-label">聖水洞カフェ</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1483628529892-5436eb24f89a?w=220&h=150&auto=format&fit=crop&q=80" alt="MUSINSA"><div class="spot-label">MUSINSA</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1597230887809-b2d4800bc2a5?w=220&h=150&auto=format&fit=crop&q=80" alt="東大門"><div class="spot-label">東大門DDP夜</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1597409153786-b99d4251f4d9?w=220&h=150&auto=format&fit=crop&q=80" alt="DOOTA"><div class="spot-label">DOOTA Mall</div></div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">09:00</div><div class="day-event">ホテル出発　→　地下鉄 or タクシーで江南へ（約30分）</div></div>
+          <div class="day-row"><div class="day-time">10:00〜</div><div class="day-event highlight">💆 BROWDOLL　眉毛アートメイク施術（約2〜3時間）</div></div>
+          <div class="day-row"><div class="day-time">12:30〜</div><div class="day-event">新沙ガロスキル　おしゃれランチ</div></div>
+          <div class="day-row"><div class="day-time">14:00</div><div class="day-event">新沙ガロスキル　カフェ・ショッピング（屋内中心で眉に優しく）</div></div>
+          <div class="day-row"><div class="day-time">15:00</div><div class="day-event highlight">🚇 聖水洞（ソンス）へ移動（タクシー or 地下鉄2号線）<br><small style="color:#B84820">🛍 MUSINSA TERRACE Seongsu　／　SATUR Flagship Store Seongsu</small></div></div>
+          <div class="day-row"><div class="day-time">17:00</div><div class="day-event">ホテルへ戻り休憩（2号線 聖水駅 → 東大門歴史文化公園駅　約10分）</div></div>
+          <div class="day-row"><div class="day-time">19:30〜</div><div class="day-event highlight">東大門　夜ショッピング（DOOTA Mall・Migliore Dongdaemun・DDP周辺）徒歩圏内！</div></div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1483628529892-5436eb24f89a?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day3">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 3</span>
+            <span class="day-date">5月2日（土）</span>
+            <span class="day-loc">🏯 観光　✨ ほくろ取り　明洞</span>
+            <span class="day-icon">🌸✦</span>
+          </div>
+        </div>
+        <div class="spot-strip">
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1483628529892-5436eb24f89a?w=220&h=150&auto=format&fit=crop&q=80" alt="景福宮"><div class="spot-label">景福宮</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1670735411734-c9725326de3f?w=220&h=150&auto=format&fit=crop&q=80" alt="北村"><div class="spot-label">北村韓屋村</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1630135199928-55a43e87350d?w=220&h=150&auto=format&fit=crop&q=80" alt="仁寺洞"><div class="spot-label">仁寺洞</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1586274677440-231405a4c74c?w=220&h=150&auto=format&fit=crop&q=80" alt="明洞"><div class="spot-label">明洞ショッピング</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1552568165-02cfdb51bc7d?w=220&h=150&auto=format&fit=crop&q=80" alt="クリニック"><div class="spot-label">クリニック</div></div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">09:00</div><div class="day-event">景福宮　観光（地下鉄3号線　景福宮駅）</div></div>
+          <div class="day-row"><div class="day-time">10:30</div><div class="day-event">北村韓屋村　散策・写真撮影</div></div>
+          <div class="day-row"><div class="day-time">12:30</div><div class="day-event">仁寺洞　ランチ＆雑貨ショッピング・伝統茶カフェ</div></div>
+          <div class="day-row"><div class="day-time">14:30</div><div class="day-event">明洞へ移動　Kコスメ・スキンケア＆ブランドショッピング<br><small style="color:#B84820">🛍 THE NORTH FACE Myeongdong（大型旗艦店）・ジルボー明洞店は今日がメインチャンス！</small></div></div>
+          <div class="day-row"><div class="day-time">15:00</div><div class="day-event highlight">✨ ビンセントクリニック　シミ・ほくろ取り放題（〜16:00）✅予約確定</div></div>
+          <div class="day-row"><div class="day-time">16:00〜</div><div class="day-event">明洞　引き続きショッピング・夕食</div></div>
+          <div class="day-row"><div class="day-time"></div><div class="day-event warning">⚠️ 翌朝7:30出発　荷造りを済ませておく！</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<div class="timeline-item">
-<div class="timeline-time">DAY5</div>
-<div class="timeline-title">カフェ巡り</div>
+<!-- ══ BUSAN DIVIDER ═══════════════════════════ -->
+<div class="city-divider">
+  <img src="https://images.unsplash.com/photo-1702040093537-b8c34eaa0f5c?w=1400&h=280&auto=format&fit=crop&q=80" alt="Busan"
+       onerror="this.style.background='linear-gradient(135deg,#1A5276,#0D3349)';this.style.display='block'">
+  <div class="city-divider-overlay">
+    <div class="city-divider-text">
+      <h2>🌊 釜山 2泊</h2>
+      <p>5月3日（日）〜 5月5日（火）</p>
+    </div>
+  </div>
 </div>
 
-<div class="timeline-item">
-<div class="timeline-time">DAY6</div>
-<div class="timeline-title">15:50 → 17:20 帰国</div>
-</div>
+<div class="container">
+  <div class="section" style="margin-top:16px;">
+    <div class="section-title">🗓 日程詳細（釜山）</div>
+    <div class="section-body" style="padding:14px;">
+
+      <!-- Day 4 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1515093619859-d98321073408?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day4">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 4</span>
+            <span class="day-date">5月3日（日）</span>
+            <span class="day-loc">🚅 ソウル → 釜山</span>
+            <span class="day-icon">🚄🌊</span>
+          </div>
+        </div>
+        <div class="spot-strip">
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1610870596605-d293eaf5a1ad?w=220&h=150&auto=format&fit=crop&q=80" alt="KTX"><div class="spot-label">KTX車内</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1597230887809-b2d4800bc2a5?w=220&h=150&auto=format&fit=crop&q=80" alt="釜山駅"><div class="spot-label">釜山駅着</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1702040093537-b8c34eaa0f5c?w=220&h=150&auto=format&fit=crop&q=80" alt="広安里"><div class="spot-label">広安里ビーチ</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1677029969065-c9f4003a9ad5?w=220&h=150&auto=format&fit=crop&q=80" alt="海鮮"><div class="spot-label">釜山グルメ</div></div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">07:30</div><div class="day-event warning">⚠️ サミットホテル チェックアウト・出発</div></div>
+          <div class="day-row"><div class="day-time">07:40</div><div class="day-event">東大門歴史文化公園駅 → 4号線 → ソウル駅（約15分）</div></div>
+          <div class="day-row"><div class="day-time">08:58</div><div class="day-event highlight">🚅 KTX 出発</div></div>
+          <div class="day-row"><div class="day-time">11:16</div><div class="day-event highlight">釜山駅 到着</div></div>
+          <div class="day-row"><div class="day-time">12:00〜</div><div class="day-event">釜山ビジネスホテル　チェックイン（荷物預け）</div></div>
+          <div class="day-row"><div class="day-time">14:00</div><div class="day-event">広安里ビーチ周辺　散策・カフェでのんびり</div></div>
+          <div class="day-row"><div class="day-time">夜</div><div class="day-event">釜山の海鮮グルメ　（コプチャン・ハエムル鍋など）</div></div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1672671187899-a10f547341f1?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day5">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 5</span>
+            <span class="day-date">5月4日（月）</span>
+            <span class="day-loc">釜山満喫</span>
+            <span class="day-icon">🌊🦞</span>
+          </div>
+        </div>
+        <div class="spot-strip">
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1701595964277-712b453dd66b?w=220&h=150&auto=format&fit=crop&q=80" alt="甘川"><div class="spot-label">甘川文化村</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1712651069691-4172983524a0?w=220&h=150&auto=format&fit=crop&q=80" alt="チャガルチ"><div class="spot-label">チャガルチ市場</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1672671186251-59a07a9e57fe?w=220&h=150&auto=format&fit=crop&q=80" alt="BIFF"><div class="spot-label">BIFF広場</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1597409153786-b99d4251f4d9?w=220&h=150&auto=format&fit=crop&q=80" alt="国際市場"><div class="spot-label">国際市場</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1483628529892-5436eb24f89a?w=220&h=150&auto=format&fit=crop&q=80" alt="海雲台"><div class="spot-label">海雲台ビーチ</div></div>
+          <div class="spot-item"><img src="https://images.unsplash.com/photo-1702040093537-b8c34eaa0f5c?w=220&h=150&auto=format&fit=crop&q=80" alt="広安里夜"><div class="spot-label">広安大橋の夜景</div></div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">09:30</div><div class="day-event">甘川文化村　カラフルな壁画の街を散策</div></div>
+          <div class="day-row"><div class="day-time">11:30</div><div class="day-event">チャガルチ市場　釜山最大の海鮮市場・セリも見られる</div></div>
+          <div class="day-row"><div class="day-time">13:00</div><div class="day-event">BIFF広場（釜山国際映画祭の地）・手形めぐり・ランチ</div></div>
+          <div class="day-row"><div class="day-time">15:00</div><div class="day-event">国際市場・新昌洞　ショッピング</div></div>
+          <div class="day-row"><div class="day-time">17:00</div><div class="day-event">広安里 or 海雲台ビーチ　サンセットタイム</div></div>
+          <div class="day-row"><div class="day-time"></div><div class="day-event alert">☀️ 帽子・日焼け止め必携（ほくろ施術後）</div></div>
+          <div class="day-row"><div class="day-time">夜</div><div class="day-event">広安里のバー・レストランで最後のディナー</div></div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-card">
+        <div class="day-photo-header">
+          <img src="https://images.unsplash.com/photo-1610870596605-d293eaf5a1ad?w=1000&h=240&auto=format&fit=crop&q=80" alt="Day6">
+          <div class="day-photo-overlay">
+            <span class="day-num">Day 6</span>
+            <span class="day-date">5月5日（火）</span>
+            <span class="day-loc">✈ 帰国</span>
+            <span class="day-icon">✈🌸</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-row"><div class="day-time">10:00</div><div class="day-event warning">⚠️ 釜山ビジネスホテル チェックアウト</div></div>
+          <div class="day-row"><div class="day-time">10:30</div><div class="day-event">最後のおみやげ買い（西面・南浦洞エリア）</div></div>
+          <div class="day-row"><div class="day-time">13:00</div><div class="day-event">バス or タクシーで金海国際空港へ（目安40〜60分）</div></div>
+          <div class="day-row"><div class="day-time">14:00</div><div class="day-event">出国手続き・手荷物検査（早めに）</div></div>
+          <div class="day-row"><div class="day-time">15:50</div><div class="day-event highlight">✈ LJ257 金海空港 出発</div></div>
+          <div class="day-row"><div class="day-time">17:20</div><div class="day-event highlight">KIX 到着　おつかれさまでした！</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 便利メモ -->
+  <div class="section">
+    <div class="section-title">📝 便利メモ</div>
+    <div class="section-body">
+      <div class="tips-grid">
+        <div class="tip-box orange"><h4>🚇 交通</h4><ul><li>AREX：ICN→ソウル駅 約43分</li><li>T-moneyカード：地下鉄・バス共通</li><li>KTX：ソウル→釜山 約2時間30分</li><li>釜山→空港：バスで約50分 / タクシー約12,000W</li></ul></div>
+        <div class="tip-box green"><h4>💰 お金</h4><ul><li>1ウォン ≈ 0.11円　/ 10,000W ≈ 1,100円</li><li>両替：空港・コンビニATM・換金所</li><li>ほとんどの店でカード利用可</li><li>屋台・市場は現金のみの場合あり</li></ul></div>
+        <div class="tip-box red"><h4>🆘 緊急連絡先</h4><ul><li>警察：<strong>112</strong>　消防・救急：<strong>119</strong></li><li>ジンエアー：02-6332-7200</li><li>在韓日本大使館：02-2170-5200</li><li>釜山総領事館：051-465-5101</li></ul></div>
+        <div class="tip-box gold"><h4>🌞 美容施術アフターケア</h4><ul><li>眉：汗・水気を2〜3日避ける</li><li>ほくろ：かさぶたを剥がさない</li><li>ほくろ：患部に日光を当てない</li><li>帽子・日焼け止め必携（特に釜山）</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 必須アプリ -->
+  <div class="section">
+    <div class="section-title">📱 必須アプリ</div>
+    <div class="section-body">
+      <div class="app-grid">
+        <div class="app-item"><div class="app-icon">🗺️</div><div><div class="app-name">Naver Map（네이버 지도）<span class="app-tag must">必須</span></div><div class="app-desc">韓国No.1地図。地下鉄・バスの乗り換えも完璧。日本語対応あり。</div></div></div>
+        <div class="app-item"><div class="app-icon">🈳</div><div><div class="app-name">Papago（파파고）<span class="app-tag must">必須</span></div><div class="app-desc">Naver製翻訳アプリ。カメラ翻訳でメニューもその場で読める。</div></div></div>
+        <div class="app-item"><div class="app-icon">💬</div><div><div class="app-name">LINE<span class="app-tag must">必須</span></div><div class="app-desc">ビンセントクリニック連絡用。@v5773333 を友達追加済みか確認。</div></div></div>
+        <div class="app-item"><div class="app-icon">🚕</div><div><div class="app-name">Kakao T（카카오T）<span class="app-tag rec">推奨</span></div><div class="app-desc">韓国版Uber。韓国語入力不要でタクシー配車できて便利。</div></div></div>
+        <div class="app-item"><div class="app-icon">🚅</div><div><div class="app-name">Korail Talk（코레일톡）<span class="app-tag must">必須</span></div><div class="app-desc">KTX乗車券QR表示。5/3 8:58ソウル発の乗車券を事前保存。</div></div></div>
+        <div class="app-item"><div class="app-icon">💱</div><div><div class="app-name">XE Currency<span class="app-tag rec">推奨</span></div><div class="app-desc">リアルタイム為替レート。ショッピング中に即計算できる。</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ショッピング -->
+  <div class="section">
+    <div class="section-title">🛍 おすすめショッピング</div>
+    <div class="section-body">
+      <div class="shop-grid">
+        <div class="shop-card">
+          <div class="shop-photo-head">
+            <img src="https://images.unsplash.com/photo-1535189043414-47a3c49a0bed?w=600&h=160&auto=format&fit=crop&q=80" alt="NF">
+            <div class="shop-photo-head-overlay" style="background:rgba(30,45,60,.72)">🏔 THE NORTH FACE WHITE LABEL<br><small style="font-weight:400;color:#CCC">韓国限定モデル</small></div>
+          </div>
+          <div class="shop-card-body"><ul>
+            <li><strong>明洞フラッグシップ</strong>　地下カスタム刺繍バーあり<br><span class="shop-note">Day1・Day3 ◎</span></li>
+            <li style="margin-top:5px"><strong>東大門 dundun店</strong>　ホテルから徒歩圏内</li>
+          </ul></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-photo-head">
+            <img src="https://images.unsplash.com/photo-1630135199928-55a43e87350d?w=600&h=160&auto=format&fit=crop&q=80" alt="SATUR">
+            <div class="shop-photo-head-overlay" style="background:rgba(150,50,15,.68)">🌸 SATUR（세터）<br><small style="font-weight:400;color:#FFD9B0">韓国発 人気ファッション</small></div>
+          </div>
+          <div class="shop-card-body"><ul>
+            <li><strong>SATUR Flagship Store 聖水洞</strong>　聖水駅周辺<br><span class="shop-note">Day2午後 ◎</span></li>
+          </ul></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-photo-head">
+            <img src="https://images.unsplash.com/photo-1532085755448-a67fd3b518b2?w=600&h=160&auto=format&fit=crop&q=80" alt="MUSINSA">
+            <div class="shop-photo-head-overlay" style="background:rgba(15,15,35,.72)">👟 MUSINSA TERRACE<br><small style="font-weight:400;color:#BBB">聖水洞 / ストリート&セレクト</small></div>
+          </div>
+          <div class="shop-card-body"><ul>
+            <li><strong>MUSINSA TERRACE Seongsu</strong>　聖水洞<br><span class="shop-note">Day2午後 ◎ SATURと同日</span></li>
+          </ul></div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-photo-head">
+            <img src="https://images.unsplash.com/photo-1671160394835-d871e3d19eb2?w=600&h=160&auto=format&fit=crop&q=80" alt="Girbaud">
+            <div class="shop-photo-head-overlay" style="background:rgba(60,10,100,.68)">✨ Marithé François Girbaud<br><small style="font-weight:400;color:#CCC">ジルボー / 韓国で再ブーム</small></div>
+          </div>
+          <div class="shop-card-body"><ul>
+            <li><strong>明洞フラッグシップ</strong><br><span class="shop-note">Day1・Day3 ◎</span></li>
+            <li style="margin-top:5px"><strong>ロッテ免税店（明洞）</strong>　免税購入可</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="alert-box yellow" style="margin-top:0">
+        <h4>💡 ショッピングのコツ</h4>
+        <ul>
+          <li><strong>聖水洞（Day2午後）</strong>：MUSINSA TERRACE → SATUR Flagship をまとめて。新沙からタクシーが便利</li>
+          <li><strong>東大門（Day2夜）</strong>：DOOTA Mall・Migliore はホテルから徒歩圏内。重い荷物は先にホテルへ</li>
+          <li><strong>明洞（Day1夜・Day3午後）</strong>：THE NORTH FACE・ジルボー。ロッテ免税店はパスポート持参で免税購入可</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 持ち物チェックリスト -->
+  <div class="section">
+    <div class="section-title">☑ 持ち物チェックリスト</div>
+    <div class="section-body">
+      <div class="check-cols">
+        <div class="check-group">
+          <h4>必携書類</h4>
+          <label class="check-item"><input type="checkbox"> パスポート</label>
+          <label class="check-item"><input type="checkbox"> 航空券（電子 or 印刷）</label>
+          <label class="check-item"><input type="checkbox"> ホテル確認書</label>
+          <label class="check-item"><input type="checkbox"> BROWDOLL予約確認</label>
+          <label class="check-item"><input type="checkbox"> ビンセントクリニック予約確認</label>
+          <label class="check-item"><input type="checkbox"> KTX乗車券</label>
+          <label class="check-item"><input type="checkbox"> クレジットカード</label>
+        </div>
+        <div class="check-group">
+          <h4>美容・施術関連</h4>
+          <label class="check-item"><input type="checkbox"> 日焼け止め（SPF50+）</label>
+          <label class="check-item"><input type="checkbox"> 帽子（つば広）</label>
+          <label class="check-item"><input type="checkbox"> サングラス</label>
+          <label class="check-item"><input type="checkbox"> スキンケア一式</label>
+          <label class="check-item"><input type="checkbox"> 施術後用の保湿ケア</label>
+          <label class="check-item"><input type="checkbox"> メイク道具（眉ペンシル不要）</label>
+        </div>
+        <div class="check-group">
+          <h4>あると便利</h4>
+          <label class="check-item"><input type="checkbox"> エコバッグ（おみやげ用）</label>
+          <label class="check-item"><input type="checkbox"> モバイルバッテリー</label>
+          <label class="check-item"><input type="checkbox"> サブ財布（現金用）</label>
+          <label class="check-item"><input type="checkbox"> ビーチサンダル（釜山用）</label>
+          <label class="check-item"><input type="checkbox"> 常備薬</label>
+          <label class="check-item"><input type="checkbox"> Wi-Fi / SIM</label>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
-</div>
-
-<div class="cta">MAPで開く</div>
 
 <footer>
-ENJOY YOUR TRIP
+  韓国旅行しおり 2026　✦　ソウル・釜山 5泊6日<br>
+  いってらっしゃい！最高の旅になりますように 🇰🇷
 </footer>
-
 </body>
 </html>
